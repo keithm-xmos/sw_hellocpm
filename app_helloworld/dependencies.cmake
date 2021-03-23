@@ -1,13 +1,16 @@
-#NOTE: Including CPM and the sandbox_add function can be in a CMake util,
+#NOTE: Including CPM and the sandbox_add function could be in a CMake util,
 #        potentially distributed with the toolchain
 
 include(${CMAKE_SOURCE_DIR}/../cmake/CPM.cmake)
 
 function(sandbox_add CODEDOMAIN LOCATION TAG)
+  #NOTE: perhaps a SOURCE_DIR up 2 folders isn't what we want in all cases.
+  #       this could be parameterized if necessary
   CPMAddPackage(
     NAME ${CODEDOMAIN}
     GIT_REPOSITORY ${LOCATION}
     GIT_TAG ${TAG}
+    GIT_SHALLOW
     DOWNLOAD_ONLY
     SOURCE_DIR  "${CMAKE_SOURCE_DIR}/../../${CODEDOMAIN}"
   )
@@ -56,4 +59,3 @@ sandbox_add(lib_yaml_py                    git@github0.xmos.com:xmos-int/lib_yam
 sandbox_add(tools_released                 git@github0.xmos.com:xmos-int/tools_released      3f09c8a47685e45b3a2c9a626cf2c1047805bd98)
 sandbox_add(tools_xmostest                 git@github0.xmos.com:xmos-int/tools_xmostest       1e2d0097624e0df9c92981d2fc652fda3f81b9e2)
 sandbox_add(xdoc_released                  git@github0.xmos.com:xmos-int/xdoc_released        37ed217166f156d9938df4e627efa93a18978db8)
-
