@@ -43,6 +43,7 @@ set(BUILD_FLAGS
   "-mcmodel=large"
   "-report"
   "-march=xs3a"
+  "-DDEBUG_PRINT_ENABLE=1"
   "-Os"
 )
 
@@ -52,11 +53,13 @@ target_link_options(helloworld PRIVATE ${BUILD_FLAGS})
 set_target_properties(helloworld PROPERTIES OUTPUT_NAME helloworld.xe)
 
 target_sources(helloworld
+  PRIVATE ${LIB_LOGGING_SOURCES}
   PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/main.c"
 )
 
 target_include_directories(helloworld
-  PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
+  PRIVATE ${LIB_LOGGING_INCLUDES}
+  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 install(TARGETS helloworld DESTINATION ${INSTALL_DIR})

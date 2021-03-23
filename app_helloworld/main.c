@@ -1,5 +1,5 @@
-#include <stdio.h>
+#include <debug_print.h>
 
 int main(int argc, char *argv[]) {
-    printf("Hello World!\n");
+    debug_printf("Hello World!\n");
 }
