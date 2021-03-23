@@ -6,6 +6,6 @@ To build, run the following commands:
     $ cmake --build build --target install
 
 
-To run the formware,
+To run the firmware,
 
     $ xrun --io bin/helloworld.xe
