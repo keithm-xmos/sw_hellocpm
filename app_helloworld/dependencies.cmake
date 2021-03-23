@@ -1,4 +1,4 @@
-#NOTE: Including CPM and the sandbox_add function could be in a CMake util,
+#NOTE: Including CPM and the sandbox_add macro could be in a CMake util,
 #        potentially distributed with the toolchain
 
 include(${CMAKE_SOURCE_DIR}/../cmake/CPM.cmake)
