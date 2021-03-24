@@ -6,6 +6,10 @@ To build, run the following commands:
     $ cmake --build build --target install
 
 
-To run the firmware,
+To run the firmware:
 
     $ xrun --io bin/helloworld.xe
+
+To *really* clean and start over, run:
+
+    $ ./really_clean.sh
