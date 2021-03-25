@@ -1,4 +1,8 @@
-# Instructions for testing
+# Hello CPM Demonstration
+
+This is a toy application created to test and demonstrate using [CPM](https://github.com/cpm-cmake/CPM.cmake) for dependency managment and [CMake](https://cmake.org/) for build.
+
+## Instructions for testing
 
 Create a directory for your sandbox:
 

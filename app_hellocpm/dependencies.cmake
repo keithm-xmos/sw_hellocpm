@@ -13,7 +13,6 @@ macro(sandbox_add CODEDOMAIN LOCATION TAG)
   CPMAddPackage(
     NAME ${CODEDOMAIN}
     GIT_REPOSITORY ${LOCATION}
-    #VERSION ${TAG}
     GIT_TAG ${TAG}
     GIT_SHALLOW
     DOWNLOAD_ONLY
@@ -50,16 +49,43 @@ endmacro()
 # sandbox_add(lib_i2c                        git@github.com:xmos/lib_i2c                        64cbedcc50484a97b13bd341e1f4b457221c483f)
 # sandbox_add(lib_i2s                        git@github.com:xmos/lib_i2s                        9c521d0a93eefaf9381eeb70d70835838fa8eba6)
 # sandbox_add(lib_interference_canceller     git@github.com:xmos/lib_interference_canceller     8599951a51ce6fbe8ec4533e86e5824d5fd55c25)
-
-# NOTE: a fork of lib_logging is substituted to demonstrate how sources could be included
-# ORIGINAL lib_logging 
 # sandbox_add(lib_logging                    git@github.com:xmos/lib_logging                    09c77b06920afc1d3ddc70f377fe92a0bec46e0f)
-# DEPS
-#sandbox_add(lib_logging                    git@github.com:keithm-xmos/lib_logging             feature/cmake_deps)
-#NO-DEPS 
+
+# *****************************
+# START OF A CMAKE-ENABLED LIB_LOGGING
+# NOTE: a fork of lib_logging is substituted to demonstrate how sources could be included
+# *****************************
+
+# NO DEPENDENCIES 
+# NOTE: specifying a branch here
 sandbox_add(lib_logging                    git@github.com:keithm-xmos/lib_logging             feature/cmake_no_deps)
-#sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert                    3.0.1rc1)
-#sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert                    v4.0.1)
+# *****************************
+# START OF NESTED DEPENDENCIES
+# *****************************
+#            app_hellocpm
+#             /       \
+#                    lib_logging
+#                       \
+#                      lib_xassert
+# sandbox_add(lib_logging                    git@github.com:keithm-xmos/lib_logging             feature/cmake_deps)
+#  Uncomment the addition of lib_xassert below to demonstrate version checking
+#  CPM.cmake will check the version number of any added dependency and omit a warning if another dependency 
+#  requires a more recent version.
+#            app_hellocpm
+#             /       \
+#     lib_xassert    lib_logging
+#        4.0.1          \
+#                      lib_xassert
+#                         4.0.0
+#
+# sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert                    4.0.1)
+# *****************************
+# END OF NESTED DEPENDENCIES
+# *****************************
+
+# *****************************
+# END OF A CMAKE-ENABLED LIB_LOGGING
+# *****************************
 
 # sandbox_add(lib_mic_array                  git@github.com:xmos/lib_mic_array                  4726f4490a9e8aa8931de287a564efc907454bac)
 # sandbox_add(lib_ndp                        git@github0.xmos.com:xmos-int/lib_ndp              ed7814245836c01638c66ccf5caf2ec8d9a757e8)
@@ -69,11 +95,10 @@ sandbox_add(lib_logging                    git@github.com:keithm-xmos/lib_loggin
 # sandbox_add(lib_src                        git@github.com:xmos/lib_src                        ba1bac9487f5b42f15def29218c3f7e4f5df8ca9)
 # sandbox_add(lib_vad                        git@github.com:xmos/lib_vad                        47f3c7d8908d9c4deee44734e635f23a85987e77)
 # sandbox_add(lib_voice_toolbox              git@github.com:xmos/lib_voice_toolbox              6b239cd4b68e030153687e1259152bb57585bdd6)
-#ORIGINAL lib_xassert
-sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert                    38aaa8aafa976a1194e9f88af89ba49e90afd6c8)
+# sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert                    38aaa8aafa976a1194e9f88af89ba49e90afd6c8)
 # sandbox_add(lib_xua                        git@github.com:xmos/lib_xua                        758de74946a0a7523599e1e681db1473ad2e37de)
 # sandbox_add(lib_xud                        git@github.com:xmos/lib_xud                        0c05b9e2db91efd6d0463edaa3e9b80c7b2000af)
-# sandbox_add(Unity                          git@github.com:xmos/Unity                          0e50926b52d8f27bfaa3b7c43e04c98f4f98ad21)
+sandbox_add(Unity                          git@github.com:xmos/Unity                          0e50926b52d8f27bfaa3b7c43e04c98f4f98ad21)
 
 #********************
 #********************
@@ -82,7 +107,7 @@ sandbox_add(lib_xassert                    git@github.com:xmos/lib_xassert      
 #********************
 #********************
 #********************
-# sandbox_add(xscope_fileio                  git@github.com:xmos/xscope_fileio                  v0.2.0)
+sandbox_add(xscope_fileio                  git@github.com:xmos/xscope_fileio                  v0.2.0)
 # sandbox_add(xtagctl                        git@github0.xmos.com:xmos-int/xtagctl              v1.2.0)
 # sandbox_add(infr_apps                      git@github.com:xmos/infr_apps                      bdb4b0d75583b2713d4195588ccb0db564a46fdd)
 # sandbox_add(infr_scripts_pl                git@github.com:xmos/infr_scripts_pl                227ca03fe0b6c4382579101e8b3672b34f8668b7)
