@@ -10,6 +10,6 @@ Switch to the sandbox directory:
 
 Clone the repository:
 
-    $ git clone git@github.com:keithm-xmos/sw_helloworld.git
+    $ git clone git@github.com:keithm-xmos/sw_hellocpm.git
 
-To build the application, see the README.md in the `app_helloworld` folder.
+To build the application, see the README.md in the `app_hellocpm` folder.

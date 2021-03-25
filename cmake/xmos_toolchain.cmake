@@ -1,0 +1,12 @@
+set(CMAKE_C_COMPILER "xcc")
+set(CMAKE_AR "xmosar")
+set(CMAKE_C_COMPILER_AR "xmosar")
+
+set(CMAKE_RANLIB "")
+set(CMAKE_C_COMPILER_FORCED TRUE)
+set(CMAKE_ASM_COMPILER_FORCED TRUE)
+
+set(CMAKE_C_FLAGS "" CACHE STRING "C Compiler Base Flags" FORCE)
+set(CMAKE_EXE_LINKER_FLAGS "" CACHE INTERNAL "" FORCE)
+
+enable_language(C)

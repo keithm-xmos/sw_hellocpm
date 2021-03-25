@@ -3,18 +3,7 @@ cmake_minimum_required(VERSION 3.14)
 #**********************
 # Setup XMOS toolchain
 #**********************
-set(CMAKE_C_COMPILER "xcc")
-set(CMAKE_AR "xmosar")
-set(CMAKE_C_COMPILER_AR "xmosar")
-
-set(CMAKE_RANLIB "")
-set(CMAKE_C_COMPILER_FORCED TRUE)
-set(CMAKE_ASM_COMPILER_FORCED TRUE)
-
-set(CMAKE_C_FLAGS "" CACHE STRING "C Compiler Base Flags" FORCE)
-set(CMAKE_EXE_LINKER_FLAGS "" CACHE INTERNAL "" FORCE)
-
-enable_language(C)
+include("${CMAKE_CURRENT_SOURCE_DIR}/../cmake/xmos_toolchain.cmake")
 
 #**********************
 # Disable in-source build.
@@ -28,7 +17,7 @@ endif()
 #**********************
 include("${CMAKE_CURRENT_SOURCE_DIR}/dependencies.cmake")
 
-project(helloworld VERSION 1.0.0)
+project(hellocpm VERSION 1.0.0)
 
 #**********************
 # install
@@ -47,19 +36,19 @@ set(BUILD_FLAGS
   "-Os"
 )
 
-add_executable(helloworld)
-target_compile_options(helloworld PRIVATE ${BUILD_FLAGS})
-target_link_options(helloworld PRIVATE ${BUILD_FLAGS})
-set_target_properties(helloworld PROPERTIES OUTPUT_NAME helloworld.xe)
+add_executable(hellocpm)
+target_compile_options(hellocpm PRIVATE ${BUILD_FLAGS})
+target_link_options(hellocpm PRIVATE ${BUILD_FLAGS})
+set_target_properties(hellocpm PROPERTIES OUTPUT_NAME hellocpm.xe)
 
-target_sources(helloworld
+target_sources(hellocpm
   PRIVATE ${LIB_LOGGING_SOURCES}
   PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/main.c"
 )
 
-target_include_directories(helloworld
+target_include_directories(hellocpm
   PRIVATE ${LIB_LOGGING_INCLUDES}
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-install(TARGETS helloworld DESTINATION ${INSTALL_DIR})
+install(TARGETS hellocpm DESTINATION ${INSTALL_DIR})
